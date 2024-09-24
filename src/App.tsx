@@ -8,6 +8,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import {BrowserRouter} from "react-router-dom";
 import appConfig from './configs/app.config';
 import {mockServer} from './mock/mock';
+import { ModalsProvider } from '@mantine/modals';
 
 export default function App() {
 
@@ -20,7 +21,8 @@ export default function App() {
   }
 
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider defaultColorScheme="dark" theme={theme}>
+      <ModalsProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
@@ -28,6 +30,7 @@ export default function App() {
           </BrowserRouter>
         </PersistGate>
       </Provider>
+      </ModalsProvider>
     </MantineProvider>
   );
 }
